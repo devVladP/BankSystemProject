@@ -1,0 +1,12 @@
+C:\ProjectsC#\BankSystemProject\BankSystem.Core\bin\Debug\net8.0\BankSystem.Core.deps.json
+C:\ProjectsC#\BankSystemProject\BankSystem.Core\bin\Debug\net8.0\BankSystem.Core.dll
+C:\ProjectsC#\BankSystemProject\BankSystem.Core\bin\Debug\net8.0\BankSystem.Core.pdb
+C:\ProjectsC#\BankSystemProject\BankSystem.Core\obj\Debug\net8.0\BankSystem.Core.csproj.AssemblyReference.cache
+C:\ProjectsC#\BankSystemProject\BankSystem.Core\obj\Debug\net8.0\BankSystem.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\ProjectsC#\BankSystemProject\BankSystem.Core\obj\Debug\net8.0\BankSystem.Core.AssemblyInfoInputs.cache
+C:\ProjectsC#\BankSystemProject\BankSystem.Core\obj\Debug\net8.0\BankSystem.Core.AssemblyInfo.cs
+C:\ProjectsC#\BankSystemProject\BankSystem.Core\obj\Debug\net8.0\BankSystem.Core.csproj.CoreCompileInputs.cache
+C:\ProjectsC#\BankSystemProject\BankSystem.Core\obj\Debug\net8.0\BankSystem.Core.dll
+C:\ProjectsC#\BankSystemProject\BankSystem.Core\obj\Debug\net8.0\refint\BankSystem.Core.dll
+C:\ProjectsC#\BankSystemProject\BankSystem.Core\obj\Debug\net8.0\BankSystem.Core.pdb
+C:\ProjectsC#\BankSystemProject\BankSystem.Core\obj\Debug\net8.0\ref\BankSystem.Core.dll

@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "IUgDptBBpLlM+T8d5BLyTQp/Po3OH+m3AKR8+OEvWK849HL1DuzgLCSST2O+eZrlAdilzQF6Q8oGBWLmPEOJBA==",
+  "success": true,
+  "projectFilePath": "C:\\ProjectsC#\\BankSystemProject\\BankSystem.Core\\BankSystem.Core.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\vladi\\.nuget\\packages\\fluentvalidation\\11.9.1\\fluentvalidation.11.9.1.nupkg.sha512",
+    "C:\\Users\\vladi\\.nuget\\packages\\mediatr\\12.2.0\\mediatr.12.2.0.nupkg.sha512",
+    "C:\\Users\\vladi\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "C:\\Users\\vladi\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
