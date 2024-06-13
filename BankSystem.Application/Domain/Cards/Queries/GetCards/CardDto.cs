@@ -11,6 +11,4 @@ public record CardDto
     public string Number { get; init; }
 
     public decimal Balance { get; init; }
-
-    public decimal? Credit { get; init; }
 }

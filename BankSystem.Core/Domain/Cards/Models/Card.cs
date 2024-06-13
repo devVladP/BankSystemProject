@@ -2,12 +2,16 @@
 using BankSystem.Core.Domain.Cards.Common;
 using BankSystem.Core.Domain.Cards.Data;
 using BankSystem.Core.Domain.Cards.Validators;
+using BankSystem.Core.Domain.Credits.Common;
+using BankSystem.Core.Domain.Credits.Models;
 
 namespace BankSystem.Core.Domain.Cards.Models;
 
 public class Card : Entity
 {
-    private readonly List<ClientsCards> _clientsCards = new();
+    private readonly List<ClientsCards> _clientsCards = [];
+    private readonly List<Credit> _credits = [];
+
 
     public Guid Id { get; private set; }
 
@@ -23,9 +27,9 @@ public class Card : Entity
 
     public string PaymentSystem { get; set; }
 
-    public decimal Credit { get; private set; }
-
     public IReadOnlyCollection<ClientsCards> ClientsCards => _clientsCards;
+
+    public IReadOnlyCollection<Credit> Credits => _credits;
 
     public static async Task<Card> CreateAsync(CreateCardData data, 
         ICardNumberMustBeUniqueChecker cardNumberMustBeUniqueChecker, CancellationToken cancellationToken = default)
@@ -72,19 +76,22 @@ public class Card : Entity
         data.CardReceiver.Balance += data.TotalMoney;
     }
 
-    public void TakeCredit(TakeCreditData data)
+    public async Task TakeCreditAsync(TakeCreditData data,
+        ICardMustExistChecker cardMustExistChecker,
+        CancellationToken cancellationToken = default)
     {
-        Validate(new TakeCreditValidator(), data);
+        await ValidateAsync(new TakeCreditValidator(cardMustExistChecker), data, cancellationToken);
 
-        Credit += data.Amount;
         Balance += data.Amount;
     }
 
-    public void PayCredit(PayCreditData data)
+    public async Task PayCreditAsync(PayCreditData data, 
+        ICardMustHaveCreditsChecker cardMustHaveCreditsChecker,
+        ICreditMustExistChecker creditMustExistChecker,
+        CancellationToken cancellationToken = default)
     {
-        Validate(new PayCreditValidator(Balance), data);
+        await ValidateAsync(new PayCreditValidator(Balance, cardMustHaveCreditsChecker, creditMustExistChecker, data.CreditId), data, cancellationToken);
 
-        Credit -= data.Amount;
         Balance -= data.Amount;
     }
 }

@@ -13,3 +13,4 @@ C:\ProjectsC#\BankSystemProject\BankSystem.Persistence\obj\Debug\net8.0\BankSyst
 C:\ProjectsC#\BankSystemProject\BankSystem.Persistence\obj\Debug\net8.0\refint\BankSystem.Persistence.dll
 C:\ProjectsC#\BankSystemProject\BankSystem.Persistence\obj\Debug\net8.0\BankSystem.Persistence.pdb
 C:\ProjectsC#\BankSystemProject\BankSystem.Persistence\obj\Debug\net8.0\ref\BankSystem.Persistence.dll
+C:\ProjectsC#\BankSystemProject\BankSystem.Persistence\obj\Debug\net8.0\BankSystem.Persistence.sourcelink.json

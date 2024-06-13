@@ -7,7 +7,7 @@ internal class ClientMustExistChecker(BankSystemDbContext dbContext) : IClientMu
 {
     public async Task<bool> CheckClientMustExistAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        var client = await dbContext.Clients.FindAsync(id);
+        var client = await dbContext.Clients.FindAsync(id, cancellationToken);
         return client is not null;
     }
 }

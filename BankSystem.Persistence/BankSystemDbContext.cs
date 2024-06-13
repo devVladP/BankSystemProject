@@ -1,5 +1,6 @@
 ﻿using BankSystem.Core.Domain.Cards.Models;
 using BankSystem.Core.Domain.Clients.Models;
+using BankSystem.Core.Domain.Credits.Models;
 using BankSystem.Persistence.EntityConfigurations;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +15,8 @@ public class BankSystemDbContext(DbContextOptions<BankSystemDbContext> options) 
 
     public DbSet<Card> Cards { get; set; }
 
+    public DbSet<Credit> Credits { get; set; }
+
     public DbSet<ClientsCards> ClientsCards { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -23,10 +26,10 @@ public class BankSystemDbContext(DbContextOptions<BankSystemDbContext> options) 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // todo configurations
         modelBuilder.HasDefaultSchema(BankDbSchema);
         modelBuilder.ApplyConfiguration(new ClientEntityTypeConfiguration());
         modelBuilder.ApplyConfiguration(new ClientCardEntityTypeConfiguration());
         modelBuilder.ApplyConfiguration(new CardEntityTypeConfiguration());
+        modelBuilder.ApplyConfiguration(new CreditEntityTypeConfiguration());
     }
 }

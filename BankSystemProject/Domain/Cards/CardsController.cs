@@ -4,10 +4,8 @@ using BankSystem.Api.Domain.Cards.Requests;
 using BankSystem.Application.Domain.Cards.Commands.AddClientCard;
 using BankSystem.Application.Domain.Cards.Commands.CreateCard;
 using BankSystem.Application.Domain.Cards.Commands.DeleteClientCard;
-using BankSystem.Application.Domain.Cards.Commands.PayCredit;
 using BankSystem.Application.Domain.Cards.Commands.RemoveCard;
 using BankSystem.Application.Domain.Cards.Commands.SendMoney;
-using BankSystem.Application.Domain.Cards.Commands.TakeCredit;
 using BankSystem.Application.Domain.Cards.Commands.UpdateCard;
 using BankSystem.Application.Domain.Cards.Queries.GetCardDetails;
 using BankSystem.Application.Domain.Cards.Queries.GetCards;
@@ -89,38 +87,6 @@ public class CardsController(IMediator mediator) : ApiControllerBase
     {
         var command = new SendMoneyCommand(senderId, receiverId, request.Amount);
         await mediator.Send(command, cancellationToken);
-        return Ok();
-    }
-
-    [Authorize(Policy = "BankClientPolicy")]
-    [HttpPut("{cardId}/take-credit")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> TakeCreditAsync(
-        [FromRoute][Required] Guid cardId,
-        [FromBody][Required] TakeCreditRequest request,
-        CancellationToken cancellationToken)
-    {
-        var command = new TakeCreditCommand(cardId, request.Amount);
-        await mediator.Send(command, cancellationToken);
-
-        return Ok();
-    }
-
-    [Authorize(Policy = "BankClientPolicy")]
-    [HttpPut("{cardId}/pay-credit")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> PayCreditAsync(
-        [FromRoute][Required] Guid cardId,
-        [FromBody][Required] PayCreditRequest request,
-        CancellationToken cancellationToken)
-    {
-        var command = new PayCreditCommand(cardId, request.Amount);
-        await mediator.Send(command, cancellationToken);
-
         return Ok();
     }
 

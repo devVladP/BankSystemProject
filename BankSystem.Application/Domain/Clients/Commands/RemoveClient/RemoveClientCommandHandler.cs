@@ -11,7 +11,7 @@ public class RemoveClientCommandHandler(
 {
     public async Task Handle(RemoveClientCommand command, CancellationToken cancellationToken)
     {
-        await clientRepository.Delete(command.Id, cancellationToken);
+        await clientRepository.DeleteAsync(command.Id, cancellationToken);
 
         await unitOfWork.SaveChangesAsync(cancellationToken);
     }

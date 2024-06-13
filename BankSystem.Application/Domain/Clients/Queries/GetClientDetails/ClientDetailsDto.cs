@@ -2,7 +2,7 @@
 
 namespace BankSystem.Application.Domain.Clients.Queries.GetClientDetails;
 
-public class ClientDetailsDto
+public record ClientDetailsDto
 {
     [Required]
     public Guid Id { get; init; }

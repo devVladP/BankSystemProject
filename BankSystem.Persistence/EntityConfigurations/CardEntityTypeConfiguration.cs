@@ -15,6 +15,17 @@ internal class CardEntityTypeConfiguration : IEntityTypeConfiguration<Card>
             .HasForeignKey(x => x.CardId);
 
         builder.Property(x => x.Number)
-            .IsRequired();
+            .IsRequired()
+            .HasMaxLength(16);
+
+        builder.Property(x => x.CVV2)
+            .IsRequired()
+            .HasMaxLength(3);
+
+        builder.Property(x => x.PaymentSystem)
+            .HasMaxLength(100);
+
+        builder.Property(x => x.Balance)
+            .HasColumnType("smallmoney");
     }
 }

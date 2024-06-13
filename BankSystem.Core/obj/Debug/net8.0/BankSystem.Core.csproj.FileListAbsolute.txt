@@ -10,3 +10,4 @@ C:\ProjectsC#\BankSystemProject\BankSystem.Core\obj\Debug\net8.0\BankSystem.Core
 C:\ProjectsC#\BankSystemProject\BankSystem.Core\obj\Debug\net8.0\refint\BankSystem.Core.dll
 C:\ProjectsC#\BankSystemProject\BankSystem.Core\obj\Debug\net8.0\BankSystem.Core.pdb
 C:\ProjectsC#\BankSystemProject\BankSystem.Core\obj\Debug\net8.0\ref\BankSystem.Core.dll
+C:\ProjectsC#\BankSystemProject\BankSystem.Core\obj\Debug\net8.0\BankSystem.Core.sourcelink.json

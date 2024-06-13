@@ -30,14 +30,12 @@ namespace BankSystem.Persistence.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("Balance")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("smallmoney");
 
                     b.Property<string>("CVV2")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Credit")
-                        .HasColumnType("decimal(18,2)");
+                        .HasMaxLength(3)
+                        .HasColumnType("nvarchar(3)");
 
                     b.Property<DateOnly>("ExpirationDate")
                         .HasColumnType("date");
@@ -47,11 +45,13 @@ namespace BankSystem.Persistence.Migrations
 
                     b.Property<string>("Number")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(16)
+                        .HasColumnType("nvarchar(16)");
 
                     b.Property<string>("PaymentSystem")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
@@ -102,6 +102,31 @@ namespace BankSystem.Persistence.Migrations
                     b.ToTable("Clients", "bankdb");
                 });
 
+            modelBuilder.Entity("BankSystem.Core.Domain.Credits.Models.Credit", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CardId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateOnly>("CreditIssueDate")
+                        .HasColumnType("date");
+
+                    b.Property<decimal>("InitialSum")
+                        .HasColumnType("smallmoney");
+
+                    b.Property<byte>("PercentPerMonth")
+                        .HasColumnType("tinyint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CardId");
+
+                    b.ToTable("Credits", "bankdb");
+                });
+
             modelBuilder.Entity("BankSystem.Core.Domain.Cards.Models.ClientsCards", b =>
                 {
                     b.HasOne("BankSystem.Core.Domain.Cards.Models.Card", "Card")
@@ -121,9 +146,22 @@ namespace BankSystem.Persistence.Migrations
                     b.Navigation("Client");
                 });
 
+            modelBuilder.Entity("BankSystem.Core.Domain.Credits.Models.Credit", b =>
+                {
+                    b.HasOne("BankSystem.Core.Domain.Cards.Models.Card", "Card")
+                        .WithMany("Credits")
+                        .HasForeignKey("CardId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Card");
+                });
+
             modelBuilder.Entity("BankSystem.Core.Domain.Cards.Models.Card", b =>
                 {
                     b.Navigation("ClientsCards");
+
+                    b.Navigation("Credits");
                 });
 
             modelBuilder.Entity("BankSystem.Core.Domain.Clients.Models.Client", b =>

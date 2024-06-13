@@ -151,3 +151,4 @@ C:\ProjectsC#\BankSystemProject\BankSystemProject\bin\Debug\net8.0\BankSystem.In
 C:\ProjectsC#\BankSystemProject\BankSystemProject\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\ProjectsC#\BankSystemProject\BankSystemProject\bin\Debug\net8.0\Auth0.AspNetCore.Authentication.dll
 C:\ProjectsC#\BankSystemProject\BankSystemProject\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
+C:\ProjectsC#\BankSystemProject\BankSystemProject\obj\Debug\net8.0\BankSystem.Api.sourcelink.json

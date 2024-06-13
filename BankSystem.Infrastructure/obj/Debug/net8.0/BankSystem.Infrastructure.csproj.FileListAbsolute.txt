@@ -19,3 +19,4 @@ C:\ProjectsC#\BankSystemProject\BankSystem.Infrastructure\obj\Debug\net8.0\BankS
 C:\ProjectsC#\BankSystemProject\BankSystem.Infrastructure\obj\Debug\net8.0\refint\BankSystem.Infrastructure.dll
 C:\ProjectsC#\BankSystemProject\BankSystem.Infrastructure\obj\Debug\net8.0\BankSystem.Infrastructure.pdb
 C:\ProjectsC#\BankSystemProject\BankSystem.Infrastructure\obj\Debug\net8.0\ref\BankSystem.Infrastructure.dll
+C:\ProjectsC#\BankSystemProject\BankSystem.Infrastructure\obj\Debug\net8.0\BankSystem.Infrastructure.sourcelink.json

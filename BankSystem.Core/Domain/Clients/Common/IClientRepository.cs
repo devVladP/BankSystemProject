@@ -11,9 +11,9 @@ public interface IClientRepository
 {
     public Task<Client> FindAsync(Guid id, CancellationToken cancellationToken);
 
-    public Task<IReadOnlyCollection<Client>> FindManyAsync(IReadOnlyCollection<Guid> id, CancellationToken cancellationToken);
+    public Task<IReadOnlyCollection<Client>> FindManyAsync(IReadOnlyCollection<Guid> ids, CancellationToken cancellationToken);
 
     public void Add(Client client);
 
-    public Task Delete(Guid id, CancellationToken cancellationToken);
+    public Task DeleteAsync(Guid id, CancellationToken cancellationToken);
 }

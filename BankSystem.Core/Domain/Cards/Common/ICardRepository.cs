@@ -5,7 +5,7 @@ namespace BankSystem.Core.Domain.Cards.Common;
 
 public interface ICardRepository
 {
-    public Task<Card> FindAsync(Guid Id, CancellationToken cancellationToken);
+    public Task<Card> FindAsync(Guid id, CancellationToken cancellationToken);
 
     public Task<IReadOnlyCollection<Card>> FindManyAsync(IReadOnlyCollection<Guid> ids, CancellationToken cancellationToken);
 

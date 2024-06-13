@@ -7,6 +7,4 @@ public record CardInformationDto
     public string Number { get; set; }
 
     public decimal Balance { get; set; }
-
-    public decimal? Credit { get; set; }
 };

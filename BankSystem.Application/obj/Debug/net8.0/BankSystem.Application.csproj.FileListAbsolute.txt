@@ -15,3 +15,4 @@ C:\ProjectsC#\BankSystemProject\BankSystem.Application\obj\Debug\net8.0\BankSyst
 C:\ProjectsC#\BankSystemProject\BankSystem.Application\obj\Debug\net8.0\refint\BankSystem.Application.dll
 C:\ProjectsC#\BankSystemProject\BankSystem.Application\obj\Debug\net8.0\BankSystem.Application.pdb
 C:\ProjectsC#\BankSystemProject\BankSystem.Application\obj\Debug\net8.0\ref\BankSystem.Application.dll
+C:\ProjectsC#\BankSystemProject\BankSystem.Application\obj\Debug\net8.0\BankSystem.Application.sourcelink.json

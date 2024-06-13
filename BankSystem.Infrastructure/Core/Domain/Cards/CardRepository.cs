@@ -3,7 +3,6 @@ using BankSystem.Core.Domain.Cards.Models;
 using BankSystem.Core.Exceptions;
 using BankSystem.Persistence;
 using Microsoft.EntityFrameworkCore;
-using System.Threading;
 
 namespace BankSystem.Infrastructure.Core.Domain.Cards;
 

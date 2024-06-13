@@ -21,7 +21,8 @@ public class CardClientRepository(BankSystemDbContext dbContext) : ICardClientRe
 
     public async Task<ClientsCards> FindAsync(Guid cardId, Guid clientId, CancellationToken cancellationToken)
     {
-        var clientCard = await dbContext.ClientsCards.SingleOrDefaultAsync(x => x.CardId == cardId && x.ClientId == clientId);
+        var clientCard = await dbContext.ClientsCards
+            .SingleOrDefaultAsync(x => x.CardId == cardId && x.ClientId == clientId, cancellationToken);
         return clientCard ?? throw new NotFoundException($"There is no {nameof(ClientsCards)} relation");
     }
 }

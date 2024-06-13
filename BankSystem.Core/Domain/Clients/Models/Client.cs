@@ -2,12 +2,13 @@
 using BankSystem.Core.Domain.Cards.Models;
 using BankSystem.Core.Domain.Clients.Data;
 using BankSystem.Core.Domain.Clients.Validators;
+using BankSystem.Core.Domain.Credits.Models;
 
 namespace BankSystem.Core.Domain.Clients.Models;
 
 public class Client : Entity
 {
-    private readonly List<ClientsCards> _clientsCards = new();
+    private readonly List<ClientsCards> _clientsCards = [];
 
     public Guid Id { get; private set; }
 

@@ -13,7 +13,7 @@ public class ClientRepository(BankSystemDbContext dbContext) : IClientRepository
         dbContext.Clients.Add(client);
     }
 
-    public async Task Delete(Guid id, CancellationToken cancellationToken)
+    public async Task DeleteAsync(Guid id, CancellationToken cancellationToken)
     {
         var client = await dbContext.Clients.FindAsync(id, cancellationToken);
         dbContext.Clients.Remove(client);

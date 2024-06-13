@@ -7,4 +7,6 @@ public class Routes
     public const string Clients = $"{Prefix}/clients";
 
     public const string Cards = $"{Prefix}/cards";
+
+    public const string Credits = $"{Prefix}/credits";
 }

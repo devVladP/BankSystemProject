@@ -9,3 +9,4 @@ C:\ProjectsC#\BankSystemProject\PagesResponses\obj\Debug\net8.0\PagesResponses.d
 C:\ProjectsC#\BankSystemProject\PagesResponses\obj\Debug\net8.0\refint\PagesResponses.dll
 C:\ProjectsC#\BankSystemProject\PagesResponses\obj\Debug\net8.0\PagesResponses.pdb
 C:\ProjectsC#\BankSystemProject\PagesResponses\obj\Debug\net8.0\ref\PagesResponses.dll
+C:\ProjectsC#\BankSystemProject\PagesResponses\obj\Debug\net8.0\PagesResponses.sourcelink.json

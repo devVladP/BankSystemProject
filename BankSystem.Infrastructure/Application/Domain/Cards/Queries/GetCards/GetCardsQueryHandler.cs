@@ -22,7 +22,6 @@ public class GetCardsQueryHandler(BankSystemDbContext dbContext) : IRequestHandl
                 Id = c.Id,
                 Number = c.Number,
                 Balance = c.Balance,
-                Credit = c.Credit
             })
             .OrderBy(x => x.Number)
             .ToArrayAsync(cancellationToken);
