@@ -11,12 +11,14 @@ using BankSystem.Application.Domain.Credits.Queries.GetCreditDetails;
 using BankSystem.Api.Constants;
 using BankSystem.Application.Domain.Clients.Commands.RemoveClient;
 using BankSystem.Application.Domain.Credits.Commands.PayCredit;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BankSystem.Api.Domain.Credits;
 
 [Route(Routes.Credits)]
 public class CreditController(IMediator mediator) : ApiControllerBase
 {
+    [Authorize(Policy = "BankClient")]
     [HttpPost]
     [ProducesResponseType(typeof(Credit), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -30,6 +32,7 @@ public class CreditController(IMediator mediator) : ApiControllerBase
         return Created(clientId);
     }
 
+    [Authorize(Policy = "BankClient")]
     [HttpDelete("{cardId}/{creditId}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> PayCreditAsync(
@@ -44,7 +47,7 @@ public class CreditController(IMediator mediator) : ApiControllerBase
         return Ok();
     }
 
-
+    [Authorize(Policy = "BankEmployee")]
     [HttpGet]
     [ProducesResponseType(typeof(PageResponse<CreditDto[]>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetCreditsAsync(
@@ -58,6 +61,7 @@ public class CreditController(IMediator mediator) : ApiControllerBase
         return Ok(credits);
     }
 
+    [Authorize]
     [HttpGet("{id}")]
     [ProducesResponseType(typeof(CreditDetailsDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

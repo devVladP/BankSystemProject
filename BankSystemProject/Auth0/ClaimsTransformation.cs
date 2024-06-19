@@ -35,7 +35,7 @@ public class ClaimsTransformation : IClaimsTransformation
             //}
 
             var roleClaims = principal.FindAll(c => c.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role" && newIdentity.FindAll(c => c.Type == ClaimTypes.Role) == null);
-            foreach ( var roleClaim in roleClaims )
+           foreach ( var roleClaim in roleClaims )
             {
                 newIdentity.AddClaim(new Claim(ClaimTypes.Role, roleClaim.Value));
             }
