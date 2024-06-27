@@ -3,11 +3,7 @@ using BankSystem.Core.Domain.Cards.Common;
 using BankSystem.Core.Domain.Cards.Data;
 using BankSystem.Core.Domain.Cards.Validators;
 using BankSystem.Core.Domain.Clients.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace BankSystem.Core.Domain.Cards.Models;
 

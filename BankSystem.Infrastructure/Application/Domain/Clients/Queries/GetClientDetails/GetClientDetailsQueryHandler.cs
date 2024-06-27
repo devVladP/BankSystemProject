@@ -15,7 +15,7 @@ public class GetClientDetailsQueryHandler(BankSystemDbContext dbContext) : IRequ
             .Where(a => a.Id == request.id)
             .Include(a => a.ClientsCards)
             .ThenInclude(cc => cc.Card)
-            .ThenInclude(cc => cc.Credits)
+            .ThenInclude(cr => cr.Credits)
             .Select(a => new ClientDetailsDto
             {
                 Id = a.Id,
@@ -23,13 +23,13 @@ public class GetClientDetailsQueryHandler(BankSystemDbContext dbContext) : IRequ
                 LastName = a.LastName,
                 MiddleName = a.MiddleName,
                 Email = a.Email,
-                Cards = a.ClientsCards.Select(c => new CardInformationDto
+                Cards = a.ClientsCards.Select(cc => new CardInformationDto
                 {
-                    Id = c.CardId,
-                    Number = c.Card.Number,
-                    Balance = c.Card.Balance,
+                    Id = cc.CardId,
+                    Number = cc.Card.Number,
+                    Balance = cc.Card.Balance,
+                    CreditSum = cc.Card.Credits.Sum(cr => cr.InitialSum) 
                 }).ToArray(),
-                TotalCredit = a.ClientsCards.Select(cc => cc.Card.Credits.Select(cr => cr.CountCurrentCredit()).Sum()).Sum(),
                 TotalBalance = a.ClientsCards.Select(x => x.Card.Balance).Sum(),
             }).SingleOrDefaultAsync(cancellationToken)
         ?? throw new NotFoundException($"There is no client with Id: {request.id}");

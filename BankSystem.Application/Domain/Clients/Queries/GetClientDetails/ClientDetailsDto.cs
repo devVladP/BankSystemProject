@@ -18,8 +18,6 @@ public record ClientDetailsDto
 
     public string? MiddleName { get; init; }
 
-    public decimal? TotalCredit { get; init; } = 0;
-
     public decimal? TotalBalance { get; init; } = 0;
 
     public CardInformationDto[]? Cards { get; init; }
