@@ -2,7 +2,6 @@
 using BankSystem.Core.Domain.Cards.Models;
 using BankSystem.Core.Domain.Clients.Data;
 using BankSystem.Core.Domain.Clients.Validators;
-using BankSystem.Core.Domain.Credits.Models;
 
 namespace BankSystem.Core.Domain.Clients.Models;
 
@@ -20,6 +19,8 @@ public class Client : Entity
 
     public string Email { get; set; }
 
+    public string Auth0Id { get; set; }
+
     public IReadOnlyCollection<ClientsCards> ClientsCards => _clientsCards;
 
     public static Client Create(CreateClientData data)
@@ -33,6 +34,7 @@ public class Client : Entity
             LastName = data.LastName,
             MiddleName = data.MiddleName,
             Email = data.Email,
+            Auth0Id = data.Auth0Id,
         };
     }
 

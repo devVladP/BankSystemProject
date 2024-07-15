@@ -1,7 +1,6 @@
-﻿namespace BankSystem.Api.Common
+﻿namespace BankSystem.Api.Common;
+
+public class CreatedResponse<T>
 {
-    public class CreatedResponse<T>
-    {
-        public T Id { get; init; }
-    }
+    public T Id { get; init; }
 }

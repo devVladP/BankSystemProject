@@ -23,6 +23,7 @@ public class GetClientDetailsQueryHandler(BankSystemDbContext dbContext) : IRequ
                 LastName = a.LastName,
                 MiddleName = a.MiddleName,
                 Email = a.Email,
+                Auth0Id = a.Auth0Id,
                 Cards = a.ClientsCards.Select(cc => new CardInformationDto
                 {
                     Id = cc.CardId,

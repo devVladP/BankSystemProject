@@ -20,5 +20,8 @@ public record ClientDetailsDto
 
     public decimal? TotalBalance { get; init; } = 0;
 
+    [Required]
+    public string Auth0Id { get; init; }
+
     public CardInformationDto[]? Cards { get; init; }
 }

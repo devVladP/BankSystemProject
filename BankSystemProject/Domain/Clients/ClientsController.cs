@@ -17,7 +17,7 @@ namespace BankSystem.Api.Domain.Clients;
 [Route(Routes.Clients)]
 public class ClientsController(IMediator mediator) : ApiControllerBase
 {
-    [Authorize(Policy = "BankEmployeePolicy")]
+    //[Authorize(Policy = "BankEmployeePolicy")]
     [HttpGet]
     [ProducesResponseType(typeof(PageResponse<ClientDto[]>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetClientsAsync(
@@ -31,7 +31,7 @@ public class ClientsController(IMediator mediator) : ApiControllerBase
     }
 
     [Authorize]
-    [HttpGet("{id}")]
+    [HttpGet("details/{id}")]
     [ProducesResponseType(typeof(ClientDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetClientDetailsAsync(
@@ -43,8 +43,8 @@ public class ClientsController(IMediator mediator) : ApiControllerBase
         return Ok(client);
     }
 
-    [HttpPost]
-    [ProducesResponseType(typeof(ClientDto), StatusCodes.Status201Created)]
+    [HttpPost("create")]
+    [ProducesResponseType(typeof(ClientDetailsDto), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> CreateClientAsync(
         [FromBody][Required] CreateClientRequest request,
@@ -72,7 +72,7 @@ public class ClientsController(IMediator mediator) : ApiControllerBase
     }
 
     [Authorize(Policy = "BankClientPolicy")]
-    [HttpDelete]
+    [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> DeleteClientAsync(
@@ -82,5 +82,14 @@ public class ClientsController(IMediator mediator) : ApiControllerBase
         var command = new RemoveClientCommand(id);
         await mediator.Send(command, cancellationToken);
         return Ok();
+    }
+
+    [HttpGet("check")]
+    public Task<IActionResult> CheckUser(
+        [FromQuery] string Id,
+        CancellationToken cancellationToken = default
+        )
+    {
+        throw new NotImplementedException();
     }
 }

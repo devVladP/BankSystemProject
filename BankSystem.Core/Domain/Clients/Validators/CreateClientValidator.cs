@@ -21,5 +21,8 @@ internal class CreateClientValidator : AbstractValidator<CreateClientData>
         RuleFor(x => x.Email)
             .NotEmpty().WithMessage("Email must be not empty;")
             .EmailAddress().WithMessage("Email must be valid;");
+
+        RuleFor(x => x.Auth0Id)
+            .NotEmpty().WithMessage("Auth0 Id is required");
     }
 }

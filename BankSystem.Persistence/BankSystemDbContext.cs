@@ -18,7 +18,7 @@ public class BankSystemDbContext(DbContextOptions<BankSystemDbContext> options) 
     public DbSet<Credit> Credits { get; set; }
 
     public DbSet<ClientsCards> ClientsCards { get; set; }
-
+     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.LogTo(Console.WriteLine);

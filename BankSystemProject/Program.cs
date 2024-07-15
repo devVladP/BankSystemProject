@@ -22,6 +22,17 @@ public class Program
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
 
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowSpecificOrigins",
+                builder =>
+                {
+                    builder.WithOrigins("http://localhost:4200")
+                           .AllowAnyHeader()
+                           .AllowAnyMethod();
+                });
+        });
+
         builder.Services.AddAuthorization(options =>
         {
             options.AddPolicy("BankEmployeePolicy", policy =>
@@ -90,7 +101,6 @@ public class Program
             options.Audience = builder.Configuration["Auth0:Audience"];
         });
 
-
         builder.Services.AddApplicationServices(builder.Configuration);
         builder.Services.AddInfrastructureServices(builder.Configuration);
         builder.Services.AddBankPersistence(builder.Configuration);
@@ -105,6 +115,7 @@ public class Program
         }
 
         app.UseHttpsRedirection();
+        app.UseCors("AllowSpecificOrigins");
 
         app.UseAuthentication();
         app.UseAuthorization();

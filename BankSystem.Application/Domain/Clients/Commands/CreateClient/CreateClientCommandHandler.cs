@@ -17,6 +17,7 @@ public class RemoveClientCommandHandler(
             command.FirstName,
             command.LastName,
             command.Email,
+            command.Auth0Id,
             command.MiddleName);
 
         var client = Client.Create(data);

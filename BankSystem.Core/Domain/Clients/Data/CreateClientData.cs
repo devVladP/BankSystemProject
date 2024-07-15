@@ -10,4 +10,5 @@ public record CreateClientData(
     string FirstName,
     string LastName,
     string Email,
+    string Auth0Id,
     string? MiddleName);

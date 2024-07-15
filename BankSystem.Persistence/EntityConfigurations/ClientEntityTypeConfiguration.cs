@@ -21,6 +21,10 @@ public class ClientEntityTypeConfiguration : IEntityTypeConfiguration<Client>
         builder.Property(a => a.MiddleName)
             .HasMaxLength(100);
 
+        builder.Property(a => a.Auth0Id)
+            .IsRequired()
+            .HasMaxLength(100);
+
         builder.HasMany(x => x.ClientsCards)
             .WithOne(cc => cc.Client)
             .HasForeignKey(x => x.ClientId);

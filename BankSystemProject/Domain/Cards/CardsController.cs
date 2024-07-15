@@ -116,15 +116,14 @@ public class CardsController(IMediator mediator) : ApiControllerBase
         return Ok();
     }
 
-    [HttpDelete("{cardId}/clients")]
+    [HttpDelete("{clientId}/{cardId}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> DeleteClientCardAsync(
         [FromRoute][Required] Guid cardId,
-        [FromBody][Required] DeleteClientCardRequest request,
-        CancellationToken cancellationToken
-        )
+        [FromRoute][Required] Guid clientId,
+        CancellationToken cancellationToken = default)
     {
-        var command = new DeleteClientCardCommand(cardId, request.clientId);
+        var command = new DeleteClientCardCommand(cardId, clientId);
         await mediator.Send(command, cancellationToken);
         return Ok();
     }
