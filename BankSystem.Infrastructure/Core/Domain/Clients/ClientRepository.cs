@@ -25,6 +25,12 @@ public class ClientRepository(BankSystemDbContext dbContext) : IClientRepository
         return client ?? throw new NotFoundException($"Client with ID {id} has not been found");
     }
 
+    public async Task<Client> FindByAuthIdAsync(string AuthId, CancellationToken cancellationToken)
+    {
+       var client = await dbContext.Clients.Where(a => a.Auth0Id == AuthId).SingleOrDefaultAsync(cancellationToken);
+       return client ?? throw new NotFoundException($"Client with Auth0 ID {AuthId} has not been found");
+    }
+
     public async Task<IReadOnlyCollection<Client>> FindManyAsync(IReadOnlyCollection<Guid> ids, CancellationToken cancellationToken)
     {
         var clients = await dbContext.Clients.Where(a => ids.Contains(a.Id)).ToListAsync(cancellationToken);

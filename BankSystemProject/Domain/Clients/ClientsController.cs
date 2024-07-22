@@ -5,6 +5,7 @@ using BankSystem.Application.Domain.Clients.Commands.CreateClient;
 using BankSystem.Application.Domain.Clients.Commands.RemoveClient;
 using BankSystem.Application.Domain.Clients.Commands.UpdateClient;
 using BankSystem.Application.Domain.Clients.Queries.GetClientDetails;
+using BankSystem.Application.Domain.Clients.Queries.GetClientDetailsByAuth0;
 using BankSystem.Application.Domain.Clients.Queries.GetClients;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -31,7 +32,7 @@ public class ClientsController(IMediator mediator) : ApiControllerBase
     }
 
     [Authorize]
-    [HttpGet("details/{id}")]
+    [HttpGet("get-client/{id}")]
     [ProducesResponseType(typeof(ClientDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetClientDetailsAsync(
@@ -43,6 +44,19 @@ public class ClientsController(IMediator mediator) : ApiControllerBase
         return Ok(client);
     }
 
+    [Authorize]
+    [HttpGet("details/{id}")]
+    [ProducesResponseType(typeof(ClientDetailsDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> GetClientDetailsByAuth0Async(
+        [FromRoute] string id,
+        CancellationToken cancellationToken = default)
+    {
+        var query = new GetClientDetailsByAuth0Query(id);
+        var client = await mediator.Send(query, cancellationToken);
+        return Ok(client);
+    }
+
     [HttpPost("create")]
     [ProducesResponseType(typeof(ClientDetailsDto), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -50,7 +64,7 @@ public class ClientsController(IMediator mediator) : ApiControllerBase
         [FromBody][Required] CreateClientRequest request,
         CancellationToken cancellationToken = default)
     {
-        var command = new CreateClientCommand(request.FirstName, request.LastName, request.Email, request.MiddleName);
+        var command = new CreateClientCommand(request.FirstName, request.LastName, request.Email, request.Auth0Id, request.MiddleName);
 
         var clientId = await mediator.Send(command, cancellationToken);
         return Created(clientId);

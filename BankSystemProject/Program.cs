@@ -53,7 +53,7 @@ public class Program
 
         builder.Services.AddHttpContextAccessor();
 
-        builder.Services.AddScoped<IClaimsTransformation, ClaimsTransformation>();
+        //builder.Services.AddScoped<IClaimsTransformation, ClaimsTransformation>();
 
         builder.Services.AddSwaggerGen(options =>
         {

@@ -16,4 +16,6 @@ public interface IClientRepository
     public void Add(Client client);
 
     public Task DeleteAsync(Guid id, CancellationToken cancellationToken);
+
+    public Task<Client> FindByAuthIdAsync(string AuthId, CancellationToken cancellationToken);
 }
