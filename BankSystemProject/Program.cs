@@ -4,6 +4,7 @@ using BankSystem.Application;
 using BankSystem.Infrastructure;
 using BankSystem.Persistence;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -48,12 +49,28 @@ public class Program
             options.InvokeHandlersAfterFailure = true;
         });
 
+        builder.Services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        })
+        .AddJwtBearer(options =>
+        {
+            options.Authority = $"https://{builder.Configuration["Auth0:Domain"]}/";
+            options.Audience = builder.Configuration["Auth0:Audience"];
+            options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+            {
+                NameClaimType = "name",
+                RoleClaimType = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role0"
+            };
+        });
+
         builder.Services.AddSingleton<IAuthorizationHandler, HasRoleHandler>();
         builder.Services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();
 
         builder.Services.AddHttpContextAccessor();
 
-        //builder.Services.AddScoped<IClaimsTransformation, ClaimsTransformation>();
+        builder.Services.AddScoped<IClaimsTransformation, ClaimsTransformation>();
 
         builder.Services.AddSwaggerGen(options =>
         {
@@ -89,17 +106,17 @@ public class Program
             options.UseAllOfToExtendReferenceSchemas();
         });
 
-        builder.Services.AddAuth0WebAppAuthentication(options =>
-        {
-            options.Domain = builder.Configuration["Auth0:Domain"];
-            options.ClientId = builder.Configuration["Auth0:ClientId"];
-            options.ClientSecret = builder.Configuration["Auth0:ClientSecret"];
-            options.Scope = "openid profile email offline_access audience permissions issuer roles";
-        })
-        .WithAccessToken(options =>
-        {
-            options.Audience = builder.Configuration["Auth0:Audience"];
-        });
+        //builder.Services.AddAuth0WebAppAuthentication(options =>
+        //{
+        //    options.Domain = builder.Configuration["Auth0:Domain"];
+        //    options.ClientId = builder.Configuration["Auth0:ClientId"];
+        //    options.ClientSecret = builder.Configuration["Auth0:ClientSecret"];
+        //    options.Scope = "openid profile email offline_access audience permissions issuer roles";
+        //})
+        //.WithAccessToken(options =>
+        //{
+        //    options.Audience = builder.Configuration["Auth0:Audience"];
+        //});
 
         builder.Services.AddApplicationServices(builder.Configuration);
         builder.Services.AddInfrastructureServices(builder.Configuration);

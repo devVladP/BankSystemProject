@@ -44,7 +44,7 @@ public class ClientsController(IMediator mediator) : ApiControllerBase
         return Ok(client);
     }
 
-    [Authorize]
+    [Authorize(Policy = "BankClientPolicy")]
     [HttpGet("details/{id}")]
     [ProducesResponseType(typeof(ClientDetailsDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

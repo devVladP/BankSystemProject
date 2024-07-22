@@ -13,7 +13,7 @@ public class HasRoleHandler(ILogger<HasRoleHandler> logger) : AuthorizationHandl
 
         logger.LogInformation("User roles: {Roles}", string.Join(", ", roles));
 
-        if (context.User.IsInRole(requirement.Role))
+        if (roles.Contains(requirement.Role))
         {
             logger.LogInformation("user has required role");
             context.Succeed(requirement);
